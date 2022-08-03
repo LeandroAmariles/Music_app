@@ -2,7 +2,9 @@ package com.example.musicapp.Entity;
 
 import com.example.musicapp.Enum.PlayListCategory;
 import com.sun.istack.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -11,6 +13,7 @@ import java.util.List;
 
 @Entity
 @Data
+
 public class PlayList {
 
     @Id
@@ -57,7 +60,7 @@ public class PlayList {
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
-    private Userr createdBy;
+    private MyUser createdBy;
 
     @Override
     public String toString(){

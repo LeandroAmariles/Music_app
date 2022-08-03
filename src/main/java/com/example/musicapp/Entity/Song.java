@@ -2,28 +2,32 @@ package com.example.musicapp.Entity;
 
 
 import com.sun.istack.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Song {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @CreatedDate
-    @Column(name="created_at", nullable = false, updatable = false)
-    private long createdAt;
+    @Column(name="created_at")
+    private Date createdAt;
 
     @LastModifiedDate
-    @Column(name="last_modified_at", nullable = false)
-    private long lastModifiedAt;
+    @Column(name="last_modified_at")
+    private Date lastModifiedAt;
 
     @NotNull
     @Column(name="title")
@@ -34,8 +38,8 @@ public class Song {
     private String description;
 
     @NotNull
-    @Column(name="lenght", columnDefinition = "double default 0.0")
-    private double lenght;
+    @Column(name="lenght")
+    private double length;
 
     @NotNull// A song can not exist with out album
     @ManyToOne(fetch = FetchType.LAZY, optional = false)// a song can have one album
